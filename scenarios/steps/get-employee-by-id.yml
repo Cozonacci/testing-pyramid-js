@@ -1,0 +1,8 @@
+name: get employee by id
+action: GET
+url: http://localhost:3000/api/employees/@{id}
+verify:
+  - log: check employee name
+    check: response.body.name == @{id}
+extract:
+  newUser: response.body.name

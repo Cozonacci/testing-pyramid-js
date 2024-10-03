@@ -1,0 +1,8 @@
+scenario: Explore employees service
+steps:
+  - name: get employee by id
+    arguments:
+      id: 1
+  - name: get all employees
+    arguments:
+      id: 1 
