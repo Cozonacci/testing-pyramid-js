@@ -1,7 +1,7 @@
 const employees = require('../models/employeeModel');
 
 // Get all employees
-const getAllEmployees = (req, res) => {
+const getAllEmployees = (_req, res) => {
   res.json(employees);
 };
 
