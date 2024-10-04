@@ -1,8 +1,8 @@
-const DSLParser = require('./parser');
-const RequestHandler = require('./requestHandler');
-const Verification = require('./verification');
-const Extractor = require('./extractor');
-const DSLExecutor = require('./dslExecutor');
+const Executor = require('../dsl/executor');
+const Extractor = require('../dsl/extractor');
+const DSLParser = require('../dsl/parser');
+const RequestHandler = require('../dsl/requestHandler');
+const Verification = require('../dsl/verification');
 
 async function executeStep(dsl, {id, name}) {
     // Initialize components
@@ -12,25 +12,24 @@ async function executeStep(dsl, {id, name}) {
     const extractor = new Extractor(parser.getExtraction());
 
     // Execute the DSL logic
-    const dslExecutor = new DSLExecutor(parser, requestHandler, verification, extractor);
-    const result = await dslExecutor.execute(id, name);
-  
-    console.log(`Final Result: ${JSON.stringify(result)}`);
+    const executor = new Executor(parser, requestHandler, verification, extractor);
+    await executor.execute(id, name);
 }
 
 executeStep(
-    `
-    name: get employee by id
-    action: GET
-    url: http://localhost:3000/api/employees/@{id}
-    verify:
-        - log: check employee name
-          check: response.name == '@{name}'
-    extract:
-        newUser: 'response.name'
-    `, 
-    {
-        id: 1,
-        name: 'John Doe'
-    }
+  `
+  name: get employee by id
+  action: GET
+  url: http://localhost:3000/api/employees/@{id}
+  verify:
+      - log: check employee name
+        check: response.name == '@{name}'
+  extract:
+      employeeId: 'response.id'
+      employeePosition: 'response.position'
+  `, 
+  {
+      id: 1,
+      name: 'John Doe'
+  }
 )

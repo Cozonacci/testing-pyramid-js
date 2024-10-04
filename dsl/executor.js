@@ -1,11 +1,6 @@
-const DSLParser = require('./parser');
 const TemplatingService = require('./templatingService');
-const RequestHandler = require('./requestHandler');
-const Verification = require('./verification');
-const Extractor = require('./extractor');
 
-// Main application class
-class DSLExecutor {
+class Executor {
   constructor(parser, requestHandler, verification, extractor) {
     this.parser = parser;
     this.requestHandler = requestHandler;
@@ -29,11 +24,11 @@ class DSLExecutor {
       const extractionRules = this.parser.getExtraction();
       const extractedData = this.extractor.extract(response);
 
-      return extractedData; // Return extracted data (e.g., newUser)
+      return extractedData; // Return extracted data
     } else {
       console.log("Verification failed. No data will be extracted.");
     }
   }
 }
 
-module.exports = DSLExecutor;
+module.exports = Executor;
