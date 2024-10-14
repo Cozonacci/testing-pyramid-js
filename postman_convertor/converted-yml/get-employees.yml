@@ -1,0 +1,13 @@
+name: get-employees
+action: GET
+url: http://localhost:3000/api/employees
+headers:
+  Content-Type: application/json
+script: |
+  // Parse the response body as JSON
+  let response = pm.response.json();
+
+  // Check if the array 'data.users' exists and its length is 3
+  pm.test("Employees array size is 3", function () {
+      pm.expect(response).to.be.an('array').that.has.lengthOf(2);
+  });

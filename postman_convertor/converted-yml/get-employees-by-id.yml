@@ -1,0 +1,16 @@
+name: get-employees-by-id
+action: GET
+url: http://localhost:3000/api/employees/1
+headers:
+  Content-Type: application/json
+script: |
+  // Parse the response body as JSON
+  let response = pm.response.json();
+
+  // Specify the path you want to verify (example: "name")
+  let name = _.get(response, 'name');
+
+  // Check if the path exists and contains the expected value
+  pm.test("Check the name of the employee", function () {
+      pm.expect(name).to.eql("John Doe");  // Assert expected value
+  });
