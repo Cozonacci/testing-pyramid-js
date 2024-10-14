@@ -1,19 +1,24 @@
-const Executor = require('../dsl/executor');
-const Extractor = require('../dsl/extractor');
-const DSLParser = require('../dsl/parser');
-const RequestHandler = require('../dsl/requestHandler');
-const Verification = require('../dsl/verification');
+const Executor = require("../dsl/executor");
+const Extractor = require("../dsl/extractor");
+const DSLParser = require("../dsl/parser");
+const RequestHandler = require("../dsl/requestHandler");
+const Verification = require("../dsl/verification");
 
-async function executeStep(dsl, {id, name}) {
-    // Initialize components
-    const parser = new DSLParser(dsl);
-    const requestHandler = new RequestHandler();
-    const verification = new Verification(parser.getVerification());
-    const extractor = new Extractor(parser.getExtraction());
+async function executeStep(dsl, { id, name }) {
+  // Initialize components
+  const parser = new DSLParser(dsl);
+  const requestHandler = new RequestHandler();
+  const verification = new Verification(parser.getVerification());
+  const extractor = new Extractor(parser.getExtraction());
 
-    // Execute the DSL logic
-    const executor = new Executor(parser, requestHandler, verification, extractor);
-    await executor.execute(id, name);
+  // Execute the DSL logic
+  const executor = new Executor(
+    parser,
+    requestHandler,
+    verification,
+    extractor,
+  );
+  await executor.execute(id, name);
 }
 
 executeStep(
@@ -27,9 +32,9 @@ executeStep(
   extract:
       employeeId: 'response.id'
       employeePosition: 'response.position'
-  `, 
+  `,
   {
-      id: 1,
-      name: 'John Doe'
-  }
-)
+    id: 1,
+    name: "John Doe",
+  },
+);

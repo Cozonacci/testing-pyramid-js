@@ -1,6 +1,6 @@
 class TemplatingService {
   static replacePlaceholders(url, variables) {
-    return url.replace(/@\{(.*?)\}/g, (_, key) => variables[key] || '');
+    return url.replace(/@\{(.*?)\}/g, (_, key) => variables[key] || "");
   }
 }
 

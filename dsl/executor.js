@@ -1,4 +1,4 @@
-const TemplatingService = require('./templatingService');
+const TemplatingService = require("./templatingService");
 
 class Executor {
   constructor(parser, requestHandler, verification, extractor) {
@@ -10,7 +10,10 @@ class Executor {
 
   async execute(id, name) {
     // Step 1: Prepare the URL by replacing placeholders
-    const url = TemplatingService.replacePlaceholders(this.parser.getUrl(), { id, name });
+    const url = TemplatingService.replacePlaceholders(this.parser.getUrl(), {
+      id,
+      name,
+    });
 
     // Step 2: Make the GET request
     const response = await this.requestHandler.get(url);
