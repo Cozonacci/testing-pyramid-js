@@ -4,12 +4,11 @@ const DSLParser = require("../dsl/parser");
 const RequestHandler = require("../dsl/requestHandler");
 const Verification = require("../dsl/verification");
 
-async function executeStep(dsl, { id, name }) {
-  // Initialize components
+async function executeStep(testStep, testData) {
   console.log( `========= Executing Test Step =========`);
-  console.log(dsl);
+  console.log(testStep);
   console.log( `========= Finished Executing Test Step =========`);
-  const parser = new DSLParser(dsl);
+  const parser = new DSLParser(testStep);
   const requestHandler = new RequestHandler();
   const verification = new Verification(parser.getVerification());
   const extractor = new Extractor(parser.getExtraction());
@@ -21,7 +20,8 @@ async function executeStep(dsl, { id, name }) {
     verification,
     extractor,
   );
-  await executor.execute(id, name);
+
+  await executor.execute(testData);
 }
 
 executeStep(
@@ -37,7 +37,7 @@ executeStep(
       employeePosition: 'response.position'
   `,
   {
-    id: 1,
-    name: "John Doe",
+    id: 2,
+    name: "Jane Smith",
   },
 );
