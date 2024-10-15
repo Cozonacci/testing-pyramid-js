@@ -1,31 +1,6 @@
-const Executor = require("../executor");
-const Extractor = require("../extractor");
-const DSLParser = require("../parser");
-const RequestHandler = require("../requestHandler");
-const Verification = require("../verification");
+const StepDslRunner = require("../stepDslRunner");
 
-async function executeStep(testStep, testData) {
-  console.log(`========= Executing Test Step =========`);
-  console.log(testStep);
-
-  const parser = new DSLParser(testStep);
-  const requestHandler = new RequestHandler();
-  const verification = new Verification(parser.getVerification());
-  const extractor = new Extractor(parser.getExtraction());
-
-  // Execute the DSL logic
-  const executor = new Executor(
-    parser,
-    requestHandler,
-    verification,
-    extractor,
-  );
-
-  await executor.execute(testData);
-  console.log(`\n========= Finished Executing Test Step =========`);
-}
-
-executeStep(
+new StepDslRunner(
   `
   name: Get employee by id
   action: GET
@@ -45,4 +20,4 @@ executeStep(
     id: 2,
     name: "Jane Smith",
   },
-);
+).executeStep();

@@ -1,10 +1,11 @@
 {
-  "name": "testing-pyramid",
+  "name": "michiusa-js",
   "version": "1.0.0",
-  "main": "src/system_under_test/server.js",
+  "main": "src/module-dsl/stepDslRunner.js",
   "scripts": {
     "test": "jest",
-    "run": "node src/system_under_test/server.js"
+    "start-sut": "node src/system_under_test/server.js",
+    "test-dsl": "node src/module-dsl/tests/getEmployeeByIdStep.js"
   },
   "author": "Dumitru Chicu",
   "description": "NPM and JS explorer",
