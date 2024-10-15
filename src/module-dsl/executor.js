@@ -25,9 +25,8 @@ class Executor {
     const verificationResults = this.verification.verify(response, testData);
 
     // Step 4: Extract the needed data into context
-    if (verificationResults.every((item) => item === true)) {
-      const extractedData = this.extractor.extract(response);
-      return extractedData; // Return extracted data
+    if (!verificationResults.includes(false)) {
+      return this.extractor.extract(response);
     } else {
       console.log("\nThere are failed checks. No data will be extracted.");
     }
