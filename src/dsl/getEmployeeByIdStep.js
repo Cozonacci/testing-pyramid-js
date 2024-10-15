@@ -6,6 +6,9 @@ const Verification = require("../dsl/verification");
 
 async function executeStep(dsl, { id, name }) {
   // Initialize components
+  console.log( `========= Executing Test Step =========`);
+  console.log(dsl);
+  console.log( `========= Finished Executing Test Step =========`);
   const parser = new DSLParser(dsl);
   const requestHandler = new RequestHandler();
   const verification = new Verification(parser.getVerification());
