@@ -1,4 +1,5 @@
 const TemplatingService = require("./templatingService");
+const yaml = require("js-yaml");
 
 class Executor {
   constructor(parser, requestHandler, verification, extractor) {
@@ -17,9 +18,10 @@ class Executor {
 
     // Step 2: Make the GET request
     const response = await this.requestHandler.get(url);
+    const responseProcessed = JSON.parse(JSON.stringify(response));
+    console.log(`Received Response: \n${yaml.dump(responseProcessed)}`);
 
     // Step 3: Perform verification
-    const verificationRule = this.parser.getVerification();
     const verificationResults = this.verification.verify(response, testData);
 
     // Step 4: Extract the needed data into context

@@ -34,7 +34,11 @@ class Verification {
         try {
           // CAUTION: eval() should be avoided in real production systems due to security risks.
           assertionPassed = eval(assertionCondition);
-          assertionPassed = true;
+          if (typeof assertionPassed !== "boolean") {
+            assertionPassed = true;
+          } else if (!assertionPassed) {
+            throw new Error("boolean condition is false.");
+          }
           console.log("\tCheck passed.");
         } catch (error) {
           console.log(`\tCheck failed: ${error.message}`);

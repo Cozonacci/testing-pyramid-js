@@ -8,7 +8,11 @@ class RequestHandler {
   async get(url) {
     try {
       const response = await this.httpClient.get(url);
-      return response.data;
+      return {
+        status: response.status,
+        headers: response.headers,
+        body: response.data,
+      };
     } catch (error) {
       console.error(`Error during GET request: ${error.message}`);
       throw error;

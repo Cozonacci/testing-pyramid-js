@@ -31,13 +31,15 @@ executeStep(
   action: GET
   url: http://localhost:3000/api/employees/@{id}
   verify:
+      - log: Check response status
+        check: response.status === 200
       - log: Check employee id
-        check: response.id == @{id}
+        check: response.body.id === @{id}
       - log: Check employee name
-        check: expect(response.name).to.equal('@{name}')
+        check: expect(response.body.name).to.equal('@{name}')
   extract:
-      employeeId: response.id
-      employeePosition: response.position
+      employeeId: response.body.id
+      employeePosition: response.body.position
   `,
   {
     id: 2,
