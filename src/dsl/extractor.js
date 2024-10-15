@@ -8,7 +8,9 @@ class Extractor {
     for (const [key, value] of Object.entries(this.extractionRules)) {
       extracted[key] = eval(value); // CAUTION: Avoid eval() in production code
     }
-    console.log(`Following variables were extracted and placed into context: ${JSON.stringify(extracted)}`);
+    console.log(
+      `\nFollowing variables were extracted and placed into context: \n${JSON.stringify(extracted)}`,
+    );
     return extracted;
   }
 }

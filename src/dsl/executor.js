@@ -10,7 +10,10 @@ class Executor {
 
   async execute(testData) {
     // Step 1: Prepare the URL by replacing placeholders
-    const url = TemplatingService.replacePlaceholders(this.parser.getUrl(), testData);
+    const url = TemplatingService.replacePlaceholders(
+      this.parser.getUrl(),
+      testData,
+    );
 
     // Step 2: Make the GET request
     const response = await this.requestHandler.get(url);
@@ -24,7 +27,7 @@ class Executor {
       const extractedData = this.extractor.extract(response);
       return extractedData; // Return extracted data
     } else {
-      console.log("There are failed assertions. No data will be extracted.");
+      console.log("\nThere are failed checks. No data will be extracted.");
     }
   }
 }
