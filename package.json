@@ -1,14 +1,13 @@
 {
   "name": "testing-pyramid",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/system_under_test/server.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "run": "node src/system_under_test/server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "author": "Dumitru Chicu",
+  "description": "NPM and JS explorer",
   "dependencies": {
     "axios": "^1.7.7",
     "dotenv": "^16.4.5",
