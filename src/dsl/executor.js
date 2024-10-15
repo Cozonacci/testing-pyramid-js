@@ -17,16 +17,14 @@ class Executor {
 
     // Step 3: Perform verification
     const verificationRule = this.parser.getVerification();
-    const isVerified = this.verification.verify(response, testData);
+    const verificationResults = this.verification.verify(response, testData);
 
     // Step 4: Extract the needed data into context
-    if (isVerified) {
-      const extractionRules = this.parser.getExtraction();
+    if (verificationResults.every((item) => item === true)) {
       const extractedData = this.extractor.extract(response);
-
       return extractedData; // Return extracted data
     } else {
-      console.log("Verification failed. No data will be extracted.");
+      console.log("There are failed assertions. No data will be extracted.");
     }
   }
 }

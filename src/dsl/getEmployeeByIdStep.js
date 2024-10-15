@@ -30,6 +30,8 @@ executeStep(
   action: GET
   url: http://localhost:3000/api/employees/@{id}
   verify:
+      - log: check employee id
+        check: response.id == @{id}
       - log: check employee name
         check: response.name == '@{name}'
   extract:

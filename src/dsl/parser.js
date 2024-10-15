@@ -10,7 +10,7 @@ class DSLParser {
   }
 
   getVerification() {
-    return this.dslObj.verify[0]; // Assuming only one verification for simplicity
+    return this.dslObj.verify;
   }
 
   getExtraction() {

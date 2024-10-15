@@ -1,25 +1,32 @@
 class Verification {
-  constructor(verificationRule) {
-    this.verificationRule = verificationRule;
+  constructor(assertions) {
+    this.assertions = assertions;
   }
 
   verify(response, variables) {
-    const check = this.verificationRule.check.replace(
+    // assume a collection of assertions
+    const assertionResults = [];
+
+    this.assertions.forEach(assertion => {
+      const assertionCondition = assertion.check.replace(
       /@\{(.*?)\}/g,
       (_, key) => variables[key] || "",
     );
-    console.log(`Evaluating check ${check}`);
-    const checkPassed = eval(check); // CAUTION: eval() should be avoided in real production systems due to security risks.
+    console.log(`Evaluating check ${assertionCondition}`);
+    const assertionPassed = eval(assertionCondition); // CAUTION: eval() should be avoided in real production systems due to security risks.
 
     // Log the verification status
-    console.log(this.verificationRule.log);
-    if (checkPassed) {
+    console.log(assertion.log);
+
+    if (assertionPassed) {
       console.log("Check passed: Condition met.");
     } else {
       console.log("Check failed: Condition not met.");
     }
 
-    return checkPassed;
+    assertionResults.push(assertionPassed);
+    });
+    return assertionResults;
   }
 }
 
