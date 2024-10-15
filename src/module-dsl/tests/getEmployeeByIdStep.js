@@ -1,8 +1,8 @@
-const Executor = require("../dsl/executor");
-const Extractor = require("../dsl/extractor");
-const DSLParser = require("../dsl/parser");
-const RequestHandler = require("../dsl/requestHandler");
-const Verification = require("../dsl/verification");
+const Executor = require("../executor");
+const Extractor = require("../extractor");
+const DSLParser = require("../parser");
+const RequestHandler = require("../requestHandler");
+const Verification = require("../verification");
 
 async function executeStep(testStep, testData) {
   console.log(`========= Executing Test Step =========`);

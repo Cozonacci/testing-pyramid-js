@@ -2,10 +2,9 @@ const {
   getAllEmployees,
   getEmployeeById,
 } = require("../controllers/employeeController");
-const employees = require("../models/employeeModel"); // Mock employee data
+const employees = require("../models/employeeModel");
 const httpMocks = require("node-mocks-http");
 
-// Group test cases under the same describe block
 describe("Employee Controller", () => {
   // Test case for getAllEmployees
   describe("getAllEmployees", () => {

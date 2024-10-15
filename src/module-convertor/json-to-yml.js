@@ -3,7 +3,7 @@ const yaml = require("js-yaml");
 
 const readFile = () =>
   fs.readFile(
-    "postman_convertor/testing-pyramid-js.json",
+    "src/module-convertor/testing-pyramid-js.json",
     "utf8",
     (err, data) => {
       if (err) {
@@ -48,7 +48,7 @@ const convertTestCase = (jsonTestCase) => {
 
 const writeYml = (ymlData, folder, fileName) => {
   fs.writeFile(
-    `postman_convertor/${folder}/${fileName}.yml`,
+    `src/module-convertor/${folder}/${fileName}.yml`,
     ymlData,
     "utf8",
     (err) => {
