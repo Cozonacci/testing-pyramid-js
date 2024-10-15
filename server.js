@@ -1,7 +1,7 @@
 require('dotenv').config(); // Load environment variables
 
 const express = require('express');
-const employeeRoutes = require('./routes/employeeRoutes');
+const employeeRoutes = require('./src/routes/employeeRoutes');
 
 const app = express();
 
