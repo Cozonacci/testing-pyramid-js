@@ -1,6 +1,6 @@
 {
   "name": "michiusa-js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "src/module-dsl/stepDslRunner.js",
   "scripts": {
     "test": "jest",
