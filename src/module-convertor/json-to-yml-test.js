@@ -1,3 +1,3 @@
 const { readFile } = require("./json-to-yml");
 
-readFile();
+readFile("src/module-convertor/testing-pyramid-js.json");
